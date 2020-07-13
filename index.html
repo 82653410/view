@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link href="css/bootstrap.css"  rel="stylesheet" type="text/css"/>
+	
+	</head>
+	<body>
+		<div class="container" style="margin: 20px auto;">
+			<table>
+				<tr>
+					<td>厂商</td>
+				</tr>
+				<tr>
+					<td>车身结构</td>
+				</tr>
+				<tr>
+					<td>长*宽*高</td>
+				</tr>
+				<tr>
+					<td>发动机</td>
+				</tr>
+				<tr>
+					<td>变速箱</td>
+				</tr>
+				<tr>
+					<td>最高车速（Km/h）</td>
+				</tr>
+				<tr>
+					<td>官方0-100加速时间</td>
+				</tr>
+				<tr>
+					<td>官方油耗</td>
+				</tr>
+				<tr>
+					<td>整车保险期限</td>
+				</tr>
+				<tr>
+					<td>动力类型</td>
+				</tr>
+			</table>
+				
+		</div>
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:".container",
+				data(){
+					return {
+						list:[]
+					};
+				},
+				methods:{
+					get(){
+						var that = this;
+						var url = "http://127.0.0.1:8888/get";
+						$.ajax({
+							url:url,
+							xhrFields: {
+					　　　　　　withCredentials: true
+					　　　　},
+							method:"get",
+							success:function(result){
+								that.list=result;
+								$td=$("<td></td>");
+								$("tr")[0].append($td);
+							}
+						});
+					},
+					
+				},
+				created() {
+					this.get();
+				}
+				
+			});
+		</script>
+	</body>
+</html>
